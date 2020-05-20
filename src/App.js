@@ -19,6 +19,7 @@ const App = (props) => {
 
   useEffect(() => {
     props.actions.getRestaurants(selectedCity)
+    clearFilters();
   }, [selectedCity])
 
   useEffect(() => {
@@ -41,7 +42,6 @@ const App = (props) => {
       />
       <RefineSearch filters={filters} updateFilter={updateFilter} disable={props.global.restaurants.length === 0}/>
       <Restaurants restaurants={restaurants} filters={filters} />
-      {/*<Footer />*/}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import Downshift from 'downshift'
 import Fuse from 'fuse.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const SearchInput = (props) => {
   const fuse = new Fuse(props.items, { minMatchCharLength: 2, threshold: 0.3 })
@@ -12,7 +12,7 @@ const SearchInput = (props) => {
       setFilteredItems([])
       return
     }
-    setFilteredItems(fuse.search(change, {limit: 10}))
+    setFilteredItems(fuse.search(change, { limit: 10 }))
   }
   return (
     <Downshift
@@ -35,7 +35,6 @@ const SearchInput = (props) => {
             Pick a city
           </label>
           <div className={'input-container'}>
-            {/*<i>X</i>*/}
             <FontAwesomeIcon icon={faSearch} />
             <input
               {...getInputProps()}
@@ -43,9 +42,11 @@ const SearchInput = (props) => {
               placeholder="Pick a city"
               autoComplete="new-password"
             />
-            <i onClick={clearSelection} className={'clear-icon'}>
-              X
-            </i>
+            <FontAwesomeIcon
+              onClick={clearSelection}
+              className={'clear-icon'}
+              icon={faTimes}
+            />
           </div>
           {isOpen ? (
             <div className={'search-result-container'}>

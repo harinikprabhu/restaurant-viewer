@@ -5,8 +5,8 @@ const RefineSearch = (props) => {
   return (
     <div className={'refine-container'}>
       {Object.keys(filterTemplate).map((key) => (
-        <React.Fragment>
-          <label className={'refine-label'}>{key}</label>
+        <React.Fragment key={key + 'frag'}>
+          <label className={'refine-label'} key={key + 'key'}>{key}</label>
           <input
             className={'refine-input'}
             placeholder={'Filter by ' + key}
@@ -16,6 +16,7 @@ const RefineSearch = (props) => {
             value={props.filters[key]}
             onChange={(event) => props.updateFilter(key, event.target.value)}
             disabled={props.disable}
+            autoComplete="new-password"
           />
         </React.Fragment>
       ))}

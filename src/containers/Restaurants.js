@@ -37,10 +37,24 @@ const Restaurants = (props) => {
           >
             {({ index, style }) => (
               <div style={style}>
-                <div style={{color: 'black'}} className={'restaurant-item'}>
-                  <span>{filteredItems[index].name}</span>
-                  <span>{filteredItems[index].address}</span>
-                  <span>{filteredItems[index].price}</span>
+                <div style={{ color: 'black' }} className={'restaurant-item'}>
+                  <span className={'restaurant-detail'}>
+                    <p className={'restaurant-name'}>{filteredItems[index].name}</p>
+                    <p className={'restaurant-address'}>{filteredItems[index].address}</p>
+                  </span>
+                  <span className={'restaurant-price-range'}>
+                    {filteredItems[index].price === 1 ? (
+                      <p>$</p>
+                    ) : filteredItems[index].price === 2 ? (
+                      <p>$$</p>
+                    ) : filteredItems[index].price === 3 ? (
+                      <p>$$$</p>
+                    ) : filteredItems[index].price === 4 ? (
+                      <p>$$$$</p>
+                    ) : (
+                      filteredItems[index].price
+                    )}
+                  </span>
                 </div>
               </div>
             )}

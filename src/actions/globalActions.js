@@ -5,7 +5,6 @@ import * as types from '../store/actionTypes'
 export const getCities = () => async (dispatch) => {
   dispatch({ type: types.FETCH_CITIES })
   await axios.get(GET_CITIES).then((response) => {
-    console.log(response.data)
     dispatch({
       type: types.RECEIVE_CITIES,
       data: response.data.cities,
