@@ -5,7 +5,7 @@ import store from './store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
-
+import './styles/main.scss';
 window.axios = axios;
 
 ReactDOM.render(
