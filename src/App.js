@@ -23,7 +23,6 @@ const App = (props) => {
   }, [selectedCity])
 
   useEffect(() => {
-    // console.log(filters);
   }, [filters])
 
   const updateFilter = (property, value) => {

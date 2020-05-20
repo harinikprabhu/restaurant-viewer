@@ -6,7 +6,7 @@ const RefineSearch = (props) => {
     <div className={'refine-container'}>
       {Object.keys(filterTemplate).map((key) => (
         <React.Fragment key={key + 'frag'}>
-          <label className={'refine-label'} key={key + 'key'}>{key}</label>
+          <label htmlFor={key} className={'refine-label'} key={key + 'key'}>{key}</label>
           <input
             className={'refine-input'}
             placeholder={'Filter by ' + key}

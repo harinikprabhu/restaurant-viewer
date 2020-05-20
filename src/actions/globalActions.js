@@ -23,12 +23,9 @@ export const getRestaurants = (city) => async (dispatch) => {
   do {
     const url = GET_RESTAURANTS + '&city=' + city + '&page=' + page
     const res = await axios.get(url)
-    // console.log("res ", res, " page: ", page);
     totalRecords = res.data.total_entries
     restaurants = restaurants.concat(res.data.restaurants)
-    // console.log("restaurants", restaurants, res.data.restaurants);
     page++
   } while (restaurants.length < totalRecords)
-  console.log(restaurants)
   dispatch({ type: types.RECEIVE_RESTAURANTS, data: restaurants })
 }

@@ -1,10 +1,21 @@
 .header {
-  font-size: 1em;
-  text-align: center;
   background-color: #0079c1;
   color: white;
   height: 3em;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.github-icon {
+  float: right;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.app-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 400;
 }
