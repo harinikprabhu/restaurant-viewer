@@ -6,18 +6,44 @@ import Header from './containers/Header'
 import Restaurants from './containers/Restaurants'
 import SearchInput from './components/SearchInput'
 
-// const Footer = () => <div />;
-// const FilterArea = () => <div />
-// const Restaurants = () => <div />
+const filterTemplate = { name: '', address: '', area: '' }
+
+const RefineSearch = (props) => {
+  return (
+    <div>
+      {Object.keys(filterTemplate).map((key) => (
+        <input
+          key={key}
+          type="text"
+          name={key}
+          value={props.filters[key]}
+          onChange={(event) => props.updateFilter(key, event.target.value)}
+        />
+      ))}
+    </div>
+  )
+}
 
 const App = (props) => {
+  const [selectedCity, setSelectedCity] = useState('')
+  const [filters, setFilter] = useState(filterTemplate)
+
   useEffect(() => {
     props.actions.getCities()
   }, [])
-  const [selectedCity, setSelectedCity] = useState('')
+
   useEffect(() => {
     props.actions.getRestaurants(selectedCity)
   }, [selectedCity])
+
+  useEffect(() => {
+    // console.log(filters);
+  }, [filters])
+
+  const updateFilter = (property, value) => {
+    setFilter({ ...filters, [property]: value })
+  }
+
   const { cities, restaurants } = props.global
   return (
     <div className="App">
@@ -26,7 +52,8 @@ const App = (props) => {
         onSelect={(val) => setSelectedCity(val ? val.item : '')}
         items={cities}
       />
-      <Restaurants restaurants={restaurants} />
+      <RefineSearch filters={filters} updateFilter={updateFilter} />
+      <Restaurants restaurants={restaurants} filters={filters} />
       {/*<Footer />*/}
     </div>
   )

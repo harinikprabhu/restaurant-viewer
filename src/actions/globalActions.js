@@ -30,5 +30,6 @@ export const getRestaurants = (city) => async (dispatch) => {
     // console.log("restaurants", restaurants, res.data.restaurants);
     page++
   } while (restaurants.length < totalRecords)
+  console.log(restaurants)
   dispatch({ type: types.RECEIVE_RESTAURANTS, data: restaurants })
 }
