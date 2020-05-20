@@ -1,6 +1,8 @@
 import React from 'react'
 import Downshift from 'downshift'
 import Fuse from 'fuse.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const SearchInput = (props) => {
   const fuse = new Fuse(props.items, { minMatchCharLength: 2, threshold: 0.3 })
@@ -10,12 +12,12 @@ const SearchInput = (props) => {
       setFilteredItems([])
       return
     }
-    setFilteredItems(fuse.search(change))
+    setFilteredItems(fuse.search(change, {limit: 10}))
   }
   return (
     <Downshift
       onInputValueChange={(change) => onInputChange(change)}
-      itemToString={(item) => item ? item.item : null}
+      itemToString={(item) => (item ? item.item : null)}
       onSelect={(selectedItem) => props.onSelect(selectedItem)}
     >
       {({
@@ -28,33 +30,46 @@ const SearchInput = (props) => {
         selectedItem,
         clearSelection,
       }) => (
-        <div>
-          <label {...getLabelProps()}>Pick a city</label>
-          <div>
-            <i>X</i>
-            <input {...getInputProps()} />
-            <i onClick={clearSelection}>X</i>
+        <div className={'search-container'}>
+          <label {...getLabelProps()} className={'search-label'}>
+            Pick a city
+          </label>
+          <div className={'input-container'}>
+            {/*<i>X</i>*/}
+            <FontAwesomeIcon icon={faSearch} />
+            <input
+              {...getInputProps()}
+              className={'search-input'}
+              placeholder="Pick a city"
+              autoComplete="new-password"
+            />
+            <i onClick={clearSelection} className={'clear-icon'}>
+              X
+            </i>
           </div>
           {isOpen ? (
-            <ul {...getMenuProps()}>
-              {filteredItems.map((item, index) => {
-                return (
-                  <li
-                    {...getItemProps({
-                      key: index,
-                      item,
-                      style: {
-                        backgroundColor:
-                          highlightedIndex === index ? 'lightgray' : 'white',
-                        fontWeight: selectedItem === item ? 'bold' : 'normal',
-                      },
-                    })}
-                  >
-                    {item.item}
-                  </li>
-                )
-              })}
-            </ul>
+            <div className={'search-result-container'}>
+              <ul {...getMenuProps()}>
+                {filteredItems.map((item, index) => {
+                  return (
+                    <li
+                      className={'search-result'}
+                      {...getItemProps({
+                        key: index,
+                        item,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? 'lightgray' : 'white',
+                          fontWeight: selectedItem === item ? 'bold' : 'normal',
+                        },
+                      })}
+                    >
+                      {item.item}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           ) : null}
         </div>
       )}

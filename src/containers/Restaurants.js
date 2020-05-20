@@ -25,22 +25,24 @@ const Restaurants = (props) => {
     setFilteredItems(filteredItems)
   }, [props.filters, props.restaurants])
   return (
-    <div style={{ height: '50vh' }}>
+    <div style={{ height: '65vh' }} className={'restaurant-item-container'}>
       <AutoSizer>
         {({ height, width }) => (
           <FixedSizeList
             className={'list'}
             height={height}
             itemCount={filteredItems.length}
-            itemSize={70}
+            itemSize={80}
             width={width}
           >
             {({ index, style }) => (
-              <ul style={style}>
-                <li>{filteredItems[index].name}</li>
-                <li>{filteredItems[index].address}</li>
-                <li>{filteredItems[index].price}</li>
-              </ul>
+              <div style={style}>
+                <div style={{color: 'black'}} className={'restaurant-item'}>
+                  <span>{filteredItems[index].name}</span>
+                  <span>{filteredItems[index].address}</span>
+                  <span>{filteredItems[index].price}</span>
+                </div>
+              </div>
             )}
           </FixedSizeList>
         )}

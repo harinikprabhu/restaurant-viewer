@@ -5,24 +5,9 @@ import { bindActionCreators } from 'redux'
 import Header from './containers/Header'
 import Restaurants from './containers/Restaurants'
 import SearchInput from './components/SearchInput'
+import RefineSearch from './components/RefineSearch'
 
 const filterTemplate = { name: '', address: '', area: '' }
-
-const RefineSearch = (props) => {
-  return (
-    <div>
-      {Object.keys(filterTemplate).map((key) => (
-        <input
-          key={key}
-          type="text"
-          name={key}
-          value={props.filters[key]}
-          onChange={(event) => props.updateFilter(key, event.target.value)}
-        />
-      ))}
-    </div>
-  )
-}
 
 const App = (props) => {
   const [selectedCity, setSelectedCity] = useState('')
@@ -44,6 +29,8 @@ const App = (props) => {
     setFilter({ ...filters, [property]: value })
   }
 
+  const clearFilters = () => setFilter(filterTemplate);
+
   const { cities, restaurants } = props.global
   return (
     <div className="App">
@@ -52,7 +39,7 @@ const App = (props) => {
         onSelect={(val) => setSelectedCity(val ? val.item : '')}
         items={cities}
       />
-      <RefineSearch filters={filters} updateFilter={updateFilter} />
+      <RefineSearch filters={filters} updateFilter={updateFilter} disable={props.global.restaurants.length === 0}/>
       <Restaurants restaurants={restaurants} filters={filters} />
       {/*<Footer />*/}
     </div>

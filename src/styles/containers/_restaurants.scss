@@ -1,0 +1,12 @@
+.restaurant-item {
+  display: flex;
+  flex-flow: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 70px;
+}
+
+.restaurant-item-container {
+  margin: 20px;
+
+}

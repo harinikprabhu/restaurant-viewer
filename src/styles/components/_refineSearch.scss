@@ -1,0 +1,21 @@
+.refine-input {
+  margin: 5px;
+  width: 25em;
+  height: 2em;
+  border-radius: 3px;
+  box-shadow: none;
+  border: 1px solid black;
+}
+
+.refine-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.refine-label {
+  display: none;
+}
